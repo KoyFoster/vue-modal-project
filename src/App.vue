@@ -1,6 +1,18 @@
 <template>
   <h1>{{ title }}</h1>
-  <ModalWindow :header="header" text="Get thing for half price" :data="[1, 2, 3]" theme="sale" />
+  <p>Welcome</p>
+  <br>
+  <div v-if="showModal">
+    <ModalWindow
+      :header="header"
+      text="Get thing for half price"
+      :data="[1, 2, 3]"
+      theme="sale"
+      @close="toggleModal"
+    />
+  </div>
+  <br>
+  <button @click="toggleModal">open modal</button>
   <!-- <input type="text" ref="name" />
   <button @click="handleClick">click me</button> -->
 </template>
@@ -16,6 +28,7 @@ export default {
     return {
       title: "[This is a title]",
       header: "Sign up for giveaway",
+      showModal: false,
     };
   },
   methods: {
@@ -24,6 +37,9 @@ export default {
       console.warn({ nameRef });
       nameRef.classList.add("active");
       nameRef.focus();
+    },
+    toggleModal() {
+      this.showModal = !this.showModal;
     },
   },
   computed: {},
