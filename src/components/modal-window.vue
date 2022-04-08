@@ -1,36 +1,22 @@
 <template>
-  <div
-    class="backdrop"
-    @click.self="handleClickBackdrop"
-    v-if="show1stModel || show2ndModel"
-  >
-    <div class="modal" :class="{ sale: theme === 'sale' }" v-if="show1stModel">
+  <div class="backdrop" @click.self="closeModal">
+    <div class="modal" :class="{ sale: theme === 'sale' }">
       <!-- Children -->
       <slot>Default Slot</slot>
       <div class="actions">
         <slot name="links"></slot>
       </div>
     </div>
-    <div class="modal" :class="{ sale: theme === 'sale' }" v-if="show2ndModel">
-      <!-- Children -->
-      Second Modal
-    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["theme", "show1stModel", "show2ndModel"],
+  props: ["theme"],
 
   methods: {
-    handleClick1stModal() {
-      this.$emit("click1stModal");
-    },
-    handleClick2ndModal() {
-      this.$emit("click2ndModal");
-    },
-    handleClickBackdrop() {
-      this.$emit("clickBackdrop");
+    closeModal() {
+      this.$emit("close");
     },
   },
 };
