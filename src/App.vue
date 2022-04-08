@@ -1,9 +1,13 @@
 <template>
-  <h1>{{ title }}</h1>
   <p>Welcome</p>
   <br />
-  <div v-if="showModal">
-    <ModalWindow :data="[1, 2, 3]" theme="" @close="toggleModal">
+  <div>
+    <ModalWindow
+      theme=""
+      @clickBackdrop="closeModal"
+      :show1stModel="showModal1"
+      :show2ndModel="showModal2"
+    >
       <template v-slot:links>
         <a href="#">sign up now</a>
         <a href="#">more info</a>
@@ -13,7 +17,9 @@
     </ModalWindow>
   </div>
   <br />
-  <button @click.alt="toggleModal">open modal (alt)</button>
+  <button @click.alt="toggleModal2" @click.exact="toggleModal1">
+    open modal 1 (alt for modal 2)
+  </button>
   <!-- <input type="text" ref="name" />
   <button @click="handleClick">click me</button> -->
 </template>
@@ -27,18 +33,25 @@ export default {
   components: { ModalWindow },
   data() {
     return {
-      showModal: false,
+      showModal1: false,
+      showModal2: false,
     };
   },
   methods: {
     handleClick() {
       const nameRef = this.$refs.name;
-      console.warn({ nameRef });
       nameRef.classList.add("active");
       nameRef.focus();
     },
-    toggleModal() {
-      this.showModal = !this.showModal;
+    closeModal() {
+      this.showModal1 = false;
+      this.showModal2 = false;
+    },
+    toggleModal1() {
+      this.showModal1 = !this.showModal1;
+    },
+    toggleModal2() {
+      this.showModal2 = !this.showModal2;
     },
   },
   computed: {},
