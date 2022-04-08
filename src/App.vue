@@ -1,17 +1,18 @@
 <template>
   <h1>{{ title }}</h1>
   <p>Welcome</p>
-  <br>
+  <br />
   <div v-if="showModal">
-    <ModalWindow
-      :header="header"
-      text="Get thing for half price"
-      :data="[1, 2, 3]"
-      theme="sale"
-      @close="toggleModal"
-    />
+    <ModalWindow :data="[1, 2, 3]" theme="" @close="toggleModal">
+      <template v-slot:links>
+        <a href="#">sign up now</a>
+        <a href="#">more info</a>
+      </template>
+      <h1>Giveaway!</h1>
+      <p>Half price!</p>
+    </ModalWindow>
   </div>
-  <br>
+  <br />
   <button @click.alt="toggleModal">open modal (alt)</button>
   <!-- <input type="text" ref="name" />
   <button @click="handleClick">click me</button> -->
@@ -26,8 +27,6 @@ export default {
   components: { ModalWindow },
   data() {
     return {
-      title: "[This is a title]",
-      header: "Sign up for giveaway",
       showModal: false,
     };
   },
