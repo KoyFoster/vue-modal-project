@@ -1,12 +1,17 @@
 <template>
   <h1>{{ title }}</h1>
-  <input type="text" ref="name" />
-  <button @click="handleClick">click me</button>
+  <ModalWindow/>
+  <!-- <input type="text" ref="name" />
+  <button @click="handleClick">click me</button> -->
 </template>
 
 <script>
+// import
+import ModalWindow from "./components/modal-window.vue";
+
 export default {
   name: "App",
+  components: { ModalWindow },
   data() {
     return {
       title: "[This is a title]",
