@@ -1,6 +1,6 @@
 <template>
   <h1>{{ title }}</h1>
-  <ModalWindow/>
+  <ModalWindow :header="header" text="Get thing for half price" :data="[1, 2, 3]" theme="sale" />
   <!-- <input type="text" ref="name" />
   <button @click="handleClick">click me</button> -->
 </template>
@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       title: "[This is a title]",
+      header: "Sign up for giveaway",
     };
   },
   methods: {
