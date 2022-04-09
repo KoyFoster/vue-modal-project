@@ -30,7 +30,6 @@ export default {
       if (this.running) return;
       this.running = true;
 
-      console.warn("start");
       clearInterval(this.timer);
       this.timer = null;
       this.showBlock = false;
