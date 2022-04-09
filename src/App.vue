@@ -1,15 +1,30 @@
 <template>
-  <p>Welcome</p>
+  <p>Ninja Reaction Timer</p>
+  <button @click="start" :disabled="isPlaying">Play</button>
+  <RBlock v-if="isPlaying" :delay="delay" />
 </template>
 
 <script>
+import RBlock from "./components/r-block.vue";
+// import RResults from "./components/r-results.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: { RBlock },
   data() {
-    return {};
+    return {
+      delay: null,
+      isPlaying: false,
+    };
   },
-  methods: {},
+  methods: {
+    start() {
+      if (this.isPlaying) return;
+      this.isPlaying = true;
+      this.delay = 2000 + Math.random() * 5000;
+      console.log("delay:", this.delay);
+    },
+  },
   computed: {},
 };
 </script>
