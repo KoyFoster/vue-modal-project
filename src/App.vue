@@ -2,7 +2,7 @@
   <h1>{{ title }}</h1>
   <p>Welcome</p>
   <br />
-  <div v-if="showModal1">
+  <teleport to="#header" v-if="showModal1">
     <ModalWindow theme="" @close="toggleModal1">
       <template v-slot:links>
         <a href="#">sign up now</a>
@@ -11,17 +11,20 @@
       <h1>Giveaway!</h1>
       <p>Half price!</p>
     </ModalWindow>
-  </div>
-  <div v-if="showModal2">
+  </teleport>
+
+  <teleport to=".footer" v-if="showModal2">
     <ModalWindow theme="sales" @close="toggleModal2">
       <h1>Coupons!</h1>
       <p>Half price!</p>
     </ModalWindow>
-  </div>
+  </teleport>
   <br />
+
   <button @click.alt="toggleModal2" @click.exact="toggleModal1">
     open modal (alt for modal 2)
   </button>
+
   <!-- <input type="text" ref="name" />
   <button @click="handleClick">click me</button> -->
 </template>
@@ -53,7 +56,9 @@ export default {
 
 <!-- Is global to the entire page, not just this component file -->
 <style>
-#app {
+#app,
+#header,
+.footer {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
