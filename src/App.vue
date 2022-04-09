@@ -1,17 +1,17 @@
 <template>
   <p>Ninja Reaction Timer</p>
   <button @click="start" :disabled="isPlaying">Play</button>
-  <p v-show="score !== null">Reaction Time:{{ score }}ms</p>
   <RBlock v-if="isPlaying" :delay="delay" @gameEnd="gameEnd" />
+  <RResults v-if="score !== null" :score="score" />
 </template>
 
 <script>
 import RBlock from "./components/r-block.vue";
-// import RResults from "./components/r-results.vue";
+import RResults from "./components/r-results.vue";
 
 export default {
   name: "App",
-  components: { RBlock },
+  components: { RBlock, RResults },
   data() {
     return {
       delay: null,

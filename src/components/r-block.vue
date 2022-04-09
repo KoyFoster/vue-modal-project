@@ -18,6 +18,7 @@ export default {
       showBlock: false,
       timer: null,
       reactionTime: null,
+      running: false,
     };
   },
   mounted() {
@@ -26,6 +27,9 @@ export default {
   },
   methods: {
     start() {
+      if (this.running) return;
+      this.running = true;
+
       console.warn("start");
       clearInterval(this.timer);
       this.timer = null;
@@ -52,7 +56,6 @@ export default {
     },
 
     handleClick() {
-      console.warn("handleClick");
       // don't run when not shown
       if (!this.showBlock) {
         this.start();
@@ -62,7 +65,6 @@ export default {
     },
 
     stopTimer() {
-      console.warn("stopTimer");
       clearInterval(this.timer);
       this.timer = null;
       this.$emit("gameEnd", this.reactionTime);
@@ -70,6 +72,7 @@ export default {
 
       this.$refs.block.classList.remove("block");
       this.$refs.block.classList.add("clicked");
+      this.running = false;
     },
   },
 };
